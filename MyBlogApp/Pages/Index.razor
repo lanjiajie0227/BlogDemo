@@ -1,0 +1,75 @@
+﻿@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+@page "/"
+
+<div Class="d-flex justify-center mb-6 mt-7" Flat Tile>
+       <!--共享组件-->
+       <PersonalPage></PersonalPage>
+
+       <MList Class="grey lighten-4 ml-5">
+            @foreach (var item in items)
+            {
+                <MCard Elevation="0.5" Width="660" Class="mb-5">
+                <MImage Alt="example" Height="270" Src="https://cdn.masastack.com/stack/images/website/masa-blazor/cards/cooking.png" />
+                <MCardSubtitle>@item.SubText</MCardSubtitle>
+                <MCardTitle Class="mt-n7 font-weight-bold text-xl-h4">@item.Text</MCardTitle>
+                <MCardText> Greyhound divisively hello coldly wonderfully marginally far upon excluding.Greyhound divisively hello coldly wonderfully marginally far upon excluding. 
+                    Greyhound divisively hello coldly wonderfully marginally far upon excluding.Greyhound divisively hello coldly wonderfully marginally far upon excluding.Greyhound divisively hello coldly wonderfully marginally far upon excluding.
+                    Greyhound divisively hello coldly wonderfully marginally far upon excluding.
+                </MCardText>
+                <MCardActions>
+                    <MButton Elevation="0" Depressed>阅读更多</MButton>
+                </MCardActions>
+                </MCard>   
+            }
+            <div class="text-center">
+             <MPagination @bind-Value="_page"
+                 Length="4"
+                 PrevIcon="mdi-menu-left"
+                 NextIcon="mdi-menu-right">
+             </MPagination>
+           </div>
+       </MList>
+  </div>
+@code {
+
+    static readonly Item[] items =
+    {
+        new()
+        {
+            SubText = "This is BlazorServer",
+            Text = "How to build a BlazorServer App"
+        },
+        new()
+        {
+            SubText = "24 天前发表 10 天前更新 BLAZOR 28 分钟读完 (大约4230个字)",
+            Text = "MASA Blazor入门这一篇就够了"
+        },
+        new()
+        {
+            SubText = "1 个月前发表 10 天前更新 K8S / HELM 1 小时读完 (大约8368个字)",
+            Text = "使用Helm打造应用商店"
+        },
+        new()
+        {
+            SubText = "1 个月前发表 10 天前更新 BLAZOR 21 分钟读完 (大约3171个字)",
+            Text = "使用MASA.Blazor写一个标准的查询表格页"
+        }
+    };
+
+    private int _page = 1;
+
+    //文章
+    public class Item
+    {
+        public string SubText { get; set; }
+        public string Text { get; set; }
+    }
+}

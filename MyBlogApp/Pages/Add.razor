@@ -1,0 +1,38 @@
+﻿@page "/edit"
+@using MyBlogApp.Entities
+@using MyBlogApp.Data
+@inject NavigationManager MNavManger
+@inject BlogsInfoService blogsInfoService
+<h3>Add</h3>
+<Edit Blogsinfo="Blogsinfo" OnSaveCallback="OnSave"></Edit>
+<div class="text-danger">
+    @_errmsg
+</div>
+@code {
+    private Blogsinfo Blogsinfo{ get; set; }
+    private string _errmsg;
+    protected override Task OnInitializedAsync()
+    {
+        Blogsinfo = new Blogsinfo()
+        {
+            BlogId = "1"
+        };
+        return base.OnInitializedAsync();
+    }
+    private void OnSave(Blogsinfo info)
+    {
+        Blogsinfo = info;
+        info.Creater = "Lanky0227";
+        info.CreateTime = DateTime.Now;
+        info.SumText = 3600;
+        var result = blogsInfoService.SaveBlogInfo(info);
+        if(result)
+        {
+            MNavManger.NavigateTo("/label");
+        }
+        else
+        {
+            _errmsg = "保存失败";
+        }
+    }
+}

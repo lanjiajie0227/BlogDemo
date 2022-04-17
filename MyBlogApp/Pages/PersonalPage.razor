@@ -1,0 +1,271 @@
+﻿@page "/personalPage"
+
+
+            <div class="grey lighten-4">
+    <MList Class="d-flex align-start flex-column mb-5 grey lighten-4">
+           
+               <!--个人信息卡片-->
+               <MCard Elevation="0.5" Width="300" Height="430" Class="mb-5">
+                  <div class="pt-md-6 text-center" style="width:100%">
+                   <MAvatar Color="primary" Size="126">
+                        <span class="white--text">Lanky</span>
+                   </MAvatar>
+                  </div>
+               <MCardTitle Class="d-flex align-center justify-center pr-4 pl-4 pt-n4 mx-autotext-center">LANKY</MCardTitle>
+               <MCardSubtitle Class="text-center mb-n4">Be More Powerful</MCardSubtitle>
+    
+               <!--文章统计-->
+               <div class="text-center d-flex align-center justify-space-around ml-4 mr-3 mb-n2">
+                   @foreach(var sumItem in sumButtons)
+                {
+                    <MCardSubtitle>@sumItem</MCardSubtitle>
+                }
+               </div>
+               <!--文章统计-->
+               <div class="text-center d-flex align-center justify-space-around ml-5 mr-5 mb-6">
+                   @foreach(var buttonItem in buttonItems)
+                {
+                    <MButton Elevation="0" Class="white" Depressed>
+                        <MCardTitle Class="font-weight-bold text-xl-h4">
+                            @buttonItem.sum
+                        </MCardTitle>
+                        
+                        </MButton>
+                }
+               </div>
+
+                <MRow Align="AlignTypes.Center" Justify="JustifyTypes.Center"  Class="mb-6">
+                <MButton Elevation="0" Color="primary" Width="260" Rounded>关注我</MButton>
+                </MRow>
+
+                <div class="text-center d-flex align-center justify-space-around ml-5 mr-5">
+                    @foreach(var iconItem in iconItems)
+                    {
+                    <MTooltip Bottom>
+                        <ActivatorContent>
+                            <MIcon Small @attributes="@context.Attrs">@iconItem.FontText</MIcon>
+                        </ActivatorContent>
+                        <ChildContent>
+                            <span>@iconItem.ToolTip</span>
+                        </ChildContent>
+                    </MTooltip>
+                    }
+                </div>
+                </MCard>
+
+                <!--链接卡片-->
+                <MCard Elevation="0.5" Width="300" Class="mb-5">
+                    <MCardTitle Class="font-weight-light text-xs-h2">链接</MCardTitle>
+                    <MList Class="ml-mr-2">
+                        <MListItemGroup>
+                            @foreach(var linkItem in linkItems)
+                            {
+                                <MListItem @key="@linkItem" Class="rounded font-weight-light text-xs-h2">
+                                    <MListItemContent>
+                                        <MListItemTitle>@linkItem.LinkName</MListItemTitle>
+                                    </MListItemContent>
+                                    <MChip Color="primary" Label>@linkItem.LinkUri</MChip>
+                                </MListItem>
+                            }
+                        </MListItemGroup>
+                    </MList>
+                </MCard>
+
+                <!--分类卡片-->
+                <MCard Elevation="0.5" Width="300" Class="mb-5">
+                    <MCardTitle Class="font-weight-light text-xs-h2">分类</MCardTitle>
+                    <MList Class="ml-mr-2">
+                        <MListItemGroup>
+                        @foreach(var classifyItem in classifyItems)
+                        {
+                        <MListItem @key="@classifyItem" Class="rounded font-weight-light text-xs-h2">
+                             <MListItemContent>
+                              <MListItemTitle>@classifyItem.ClassifyName</MListItemTitle>
+                             </MListItemContent>
+                              <MChip Color="primary" Label>@classifyItem.ClassifyCount</MChip>
+                        </MListItem>
+                        } 
+                        </MListItemGroup>
+                </MList>
+                </MCard>
+           
+                <!--标签卡片--> 
+                <MCard Elevation="0.5" Width="300">
+                    <MCardTitle Class="font-weight-light text-xs-h2">标签</MCardTitle>
+                    <div class="pa-4">
+                <MChipGroup Column>
+                    @foreach (var tags in dicTags)
+                    {
+                        <MChip Class="font-weight-light text-xs-h2" Color="primary" Label>
+                            @tags
+                        </MChip>
+                    }
+                </MChipGroup>
+            </div>
+                </MCard>
+
+       </MList> 
+    </div>
+
+@code {
+    static readonly LinkItem[] linkItems =
+    {
+        new()
+        {
+            LinkName="MASA.EShop",
+            LinkUri="github.com"
+        },
+        new()
+        {
+            LinkName="MASA.Blazor",
+            LinkUri="github.com"
+        },
+        new()
+        {
+            LinkName="doddgu'blog",
+            LinkUri="www.cnblogs.com"
+        }
+    };
+
+    static readonly ClassifyItem[] classifyItems =
+        {
+        new()
+        {
+            ClassifyName="ASP.NET",
+            ClassifyCount=3
+        },
+        new()
+        {
+            ClassifyName="VisualBasic.NET",
+            ClassifyCount=9
+        },
+        new()
+        {
+            ClassifyName=".NET",
+            ClassifyCount=10
+        },
+        new()
+        {
+            ClassifyName="C#",
+            ClassifyCount=12
+        },
+        new()
+        {
+            ClassifyName="WinForm",
+            ClassifyCount=5
+        },
+        new()
+        {
+            ClassifyName="SQL Server",
+            ClassifyCount=6
+        },
+        new()
+        {
+            ClassifyName="Oracle",
+            ClassifyCount=8
+        }
+    };
+
+    static readonly IconItem[] iconItems =
+            {
+                new()
+                {
+                    ToolTip="github",
+                    FontText="fas fa-brands fa-github-square",
+                    IconLink="www.github.com"
+                },
+                new()
+                {
+                    ToolTip="qq",
+                    FontText="fas fa-brands fa-qq",
+                    IconLink="www.github.com"
+                },
+                new()
+                {
+                    ToolTip="blog",
+                    FontText="fas fa-solid fa-blog",
+                    IconLink="www.github.com"
+                },
+                new()
+                {
+                    ToolTip="facebook",
+                    FontText="fas fa-brands fa-facebook",
+                    IconLink="www.github.com"
+                },
+                new()
+                {
+                    ToolTip="dribble",
+                    FontText="fas fa-solid fa-basketball",
+                    IconLink="www.github.com"
+                }
+        };
+
+    static readonly ButtonItem[] buttonItems =
+        {
+            new()
+            {
+                ButtonName="文章",
+                ButtonLink="/",
+                sum=35
+            },
+            new()
+            {
+                ButtonName="分类",
+                ButtonLink="classify",
+                sum=11
+            },
+            new()
+            {
+                ButtonName="标签",
+                ButtonLink="label",
+                sum=20
+            }
+        };
+    private string[] dicTags = new string[]
+    {
+        "Blazor","C#8.0","FrameWork","MASA Design","redis","UI","Template","MASA Blazor"
+    };
+
+    private string[] sumButtons = new string[]
+    {
+        "文章","分类","标签"
+    };
+
+
+
+    //按钮
+    public class ButtonItem
+    {
+        public string ButtonName{ get; set; }
+        public string ButtonLink{ get; set; }
+        public int sum{ get; set; }
+    }
+
+    //链接
+    public class LinkItem
+    {
+        public string LinkName{ get; set; }
+        public string LinkUri{ get; set; }
+    }
+
+    //分类
+    public class ClassifyItem
+    {
+        public string ClassifyName{ get; set; }
+        public int ClassifyCount{ get; set; }
+    }
+
+    //图标
+    public class IconItem
+    {
+        public string ToolTip{ get; set; }
+        public string FontText{ get; set; }
+        public string IconLink{ get; set; }
+    }
+
+    ////按钮点击事件
+    //private EventCallback<MouseEventArgs> Button_Click
+    //{
+        
+    //}
+}

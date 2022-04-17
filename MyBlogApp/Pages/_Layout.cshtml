@@ -1,0 +1,55 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@namespace MyBlogApp.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="MyBlogApp.styles.css" rel="stylesheet" />
+
+    <link href="_content/Masa.Blazor/css/masa-blazor.css" rel="stylesheet">
+    <link href="_content/Masa.Blazor/css/masa-extend-blazor.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@("@mdi")/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+        <!--富文本编辑器-->
+    @*<link href="https://cdn.masastack.com/npm/quill/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.masastack.com/npm/quill/1.3.6/quill.bubble.css" rel="stylesheet">
+    <link href="https://cdn.masastack.com/npm/quill/1.3.6/quill-emoji.css" rel="stylesheet">
+    <link href="https://cdn.masastack.com/npm/quill/1.3.6/quilljs-markdown-common-style.css" rel="stylesheet">*@
+    <!--MarkDown编辑器-->
+    <link rel="stylesheet" href="https://cdn.masastack.com/npm/vditor/3.8.12/dist/index.css" />
+
+
+    <component type="typeof(HeadOutlet)" render-mode="ServerPrerendered" />
+</head>
+<body>
+    @RenderBody()
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+    <script src="_content/BlazorComponent/js/blazor-component.js"></script>
+    <!--富文本编辑器-->
+    @*<script src="https://cdn.masastack.com/npm/quill/1.3.6/quill.js"></script>
+    <script src="https://cdn.masastack.com/npm/quill/1.3.6/quilljs-markdown.js"></script>
+    <script src="https://cdn.masastack.com/npm/quill/1.3.6/quill-emoji.js"></script>*@
+    <!--MarkDown编辑器-->
+    <script src="https://cdn.masastack.com/npm/vditor/3.8.12/dist/index.min.js"></script>
+
+</body>
+</html>

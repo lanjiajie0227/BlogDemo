@@ -1,0 +1,35 @@
+﻿@inherits LayoutComponentBase
+
+<MApp>
+    <MAppBar Dense
+    MaxHeight="50"
+    Elevation="0.5"
+    Class="white" App>
+    <ChildContent>
+        <MTabs>
+                <MTab Link Href="/">SELF Blogs</MTab>
+                <MTab Link Href="/">主页</MTab>
+                <MTab Link Href="classify">分类</MTab>
+                <MTab Link Href="label">标签</MTab>
+                <MTab Link Href="edit">发博客</MTab>
+        </MTabs>
+        <MButton Icon>
+            <MIcon>mdi-magnify</MIcon>
+        </MButton>
+        
+    </ChildContent>
+    
+   </MAppBar>
+    <MMain Class="grey lighten-4">
+        <MContainer Fluid>
+            <CascadingValue Value="this">
+                @Body
+            </CascadingValue>
+        </MContainer>
+    </MMain>
+
+    <!--页脚-->
+    <MFooter App>
+    <!-- -->
+    </MFooter>
+</MApp>

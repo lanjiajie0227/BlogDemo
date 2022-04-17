@@ -1,0 +1,74 @@
+﻿@page "/label"
+
+@*<PageTitle>Weather forecast</PageTitle>
+
+@inject WeatherForecastService ForecastService
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <MDataTable Headers="_headers" Items="forecasts" ItemsPerPage="5" Class="elevation-1">
+        <ItemColContent>
+            @if (context.Header.Value == nameof(WeatherForecast.Date))
+            {
+                @context.Item.Date.ToShortDateString()
+            }
+            else
+            {
+                @context.Value
+            }
+            </ItemColContent>
+    </MDataTable>
+}
+
+@code {
+    private List<DataTableHeader<WeatherForecast>> _headers = new List<DataTableHeader<WeatherForecast>> {
+        new (){ Text = "Date",Value = nameof(WeatherForecast.Date) },
+        new (){ Text = "Temp. (C)",Value = nameof(WeatherForecast.TemperatureC) },
+        new (){ Text = "Temp. (F)",Value = nameof(WeatherForecast.TemperatureF) },
+        new (){ Text = "Summary",Value = nameof(WeatherForecast.Summary),Sortable = false}
+    };
+
+    private WeatherForecast[]? forecasts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+    }
+}*@
+
+<div Class="d-flex justify-center mb-6 mt-7" Flat Tile>
+    <!--共享组件-->
+    <PersonalPage></PersonalPage>
+    <!--标签卡片-->
+    <MList Class="grey lighten-4 ml-5">
+        <MCard Elevation="0.5" Width="660">
+                    <MCardTitle>标签</MCardTitle>
+                    <div class="pa-4">
+                <MChipGroup Column>
+                    @foreach (var tags in dicTags)
+                    {
+                        <MChip Color="primary" Label>
+                            @tags
+                        </MChip>
+                    }
+                </MChipGroup>
+            </div>
+                </MCard>
+        </MList>
+    
+</div>
+
+@code {
+ private string[] dicTags = new string[]
+    {
+        "Blazor","C#8.0","FrameWork","MASA Design","redis","UI","Template","MASA Blazor"
+    };
+}

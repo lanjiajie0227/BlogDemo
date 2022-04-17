@@ -1,0 +1,74 @@
+﻿@page "/classify"
+
+<div Class="d-flex justify-center mb-6 mt-7" Flat Tile>
+    <!--共享组件-->
+    <PersonalPage></PersonalPage>
+    <!--分类卡片-->
+    <MList Class="grey lighten-4 ml-5">
+        <MCard Elevation="0.5" Width="660">
+         <MCardTitle>分类</MCardTitle>
+                    <MList>
+                        <MListItemGroup>
+                        @foreach(var classifyItem in classifyItems)
+                        {
+                        <MListItem @key="@classifyItem" Class="rounded">
+                             <MListItemContent>
+                              <MListItemTitle>@classifyItem.ClassifyName</MListItemTitle>
+                             </MListItemContent>
+                              <MChip Color="primary" Label>@classifyItem.ClassifyCount</MChip>
+                        </MListItem>
+                        } 
+                        </MListItemGroup>
+                </MList>              
+      </MCard>
+        </MList>
+    
+</div>
+
+@code {
+static readonly ClassifyItem[] classifyItems =
+        {
+        new()
+        {
+            ClassifyName="ASP.NET",
+            ClassifyCount=3
+        },
+        new()
+        {
+            ClassifyName="VisualBasic.NET",
+            ClassifyCount=9
+        },
+        new()
+        {
+            ClassifyName=".NET",
+            ClassifyCount=10
+        },
+        new()
+        {
+            ClassifyName="C#",
+            ClassifyCount=12
+        },
+        new()
+        {
+            ClassifyName="WinForm",
+            ClassifyCount=5
+        },
+        new()
+        {
+            ClassifyName="SQL Server",
+            ClassifyCount=6
+        },
+        new()
+        {
+            ClassifyName="Oracle",
+            ClassifyCount=8
+        }
+    };
+
+    //分类
+    public class ClassifyItem
+    {
+        public string ClassifyName{ get; set; }
+        public int ClassifyCount{ get; set; }
+    }
+}
